@@ -23,7 +23,7 @@ class Solution:
         # perform traversal
         # we split
         # we buble onesided left right max because is only one sided
-        MaxPath = [root.val]
+        MaxPath = root.val
 
         def dfs(root):
             if root is None:
@@ -37,10 +37,10 @@ class Solution:
             rightMax = max(0, rightMax)
             # adding the current sum
             currentVal = leftMax + rightMax + root.val
-            MaxPath[0] = max(MaxPath[0], currentVal)
+            MaxPath = max(MaxPath, currentVal)
             # choose which side to return if there are more than one split
             return root.val + max(leftMax, rightMax)
         dfs(root)
 
-        return MaxPath[0]
+        return MaxPath
 # @lc code=end
