@@ -47,6 +47,10 @@ class Solution:
                 return d
             # if we are in bounds and we have not seen this then we can add to seen and append
             # and it exist and we can try and add to it seen or append it
+            # even if it's 1 as long as we have not seen it then we can add it to the que
+            # as long as we have something on the que then we can still check to see if we are able to reach
+            # the target
+            # but if we did not find the target and our que is 0 then we know that we did not find the target
             for nr, nc in ((r-1, c), (r+1, c), (r, c-1), (r, c+1)):
                 if (0 <= nr < R and 0 <= nc < C and
                         (nr, nc) not in seen and forest[nr][nc]):
