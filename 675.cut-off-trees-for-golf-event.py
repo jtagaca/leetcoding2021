@@ -11,65 +11,48 @@ from typing import *
 
 # @lc code=start
 
+import collections
+
 
 class Solution:
-    def cutOffTree(self, forest: List[List[int]]) -> int:
-        # getting the requirements
-        # cut off trees from low to high
-        # priority que?
-        # shortest to tallest
-        # always unique and have no dups
-        # we need to sort
-        # implementation
-        # how do we  know if a tree still exist?
-        # duplicate?
+    def cutOffTree(self, forest):
+        # we found the numbers as well as the locations # finding targets
+        trees = sorted((v, r, c) for r, row in enumerate(forest)
+                       for c, v in enumerate(row) if v > 1)
 
-        visited = [[False for col in forest[0]] for row in forest]
-        numWalks = 0
+        # initalize the start row and start col as well as the answer
+        sr = sc = ans = 0
+        for _, tr, tc in trees:
+            # passing the start and the target
+            d = self.bfs(forest, sr, sc, tr, tc)
+            # if we found
+            if d < 0:
+                return -1
+            ans += d
+            # changing the source
+            sr, sc = tr, tc
+        return ans
 
-        def gettraverse(r, c, forest, visited):
+    def bfs(self, forest, sr, sc, tr, tc):
+        # initalize the end row and col
+        R, C = len(forest), len(forest[0])
 
-            q = [[r, c]]
-            while q:
-                current = q.pop(0)
-                nonlocal numWalks
-                numWalks += 1
-                temprow, tempcol = current
-                visited[temprow][tempcol] = True
-                forest[temprow][tempcol] = 1
-                # only grabbing neighbors that has not been visited or atleast equal to 1
-                neighbors = getNeighbors(temprow, tempcol, forest, visited)
-
-                neighbors.sort(key=lambda x: forest[x[0]][x[1]])
-                for trow, tcol in neighbors:
-                    neighbor = forest[trow][tcol]
-                    if neighbor >= 1 and visited[trow][tcol] == False:
-                        q.append([trow, tcol])
-
-        def getNeighbors(r, c, forest, visited):
-            tempList = []
-            # might be a good idea to mark them visited as well
-            if r > 0 and visited[r-1][c] == False:
-                tempList.append([r-1, c])
-            if r < len(forest)-1 and visited[r+1][c] == False:
-                tempList.append([r+1, c])
-            if c > 0 and visited[r][c-1] == False:
-                tempList.append([r, c-1])
-            if c < len(forest)-1 and visited[r][c+1] == False:
-                tempList.append([r, c+1])
-
-            return tempList
-        for r in range(len(forest)):
-            for c in range(len(forest)):
-                # grab neighbors
-                # sort neighbors
-                # we append as long as the number is not Visited
-                if forest[r][c] == 0:
-                    return -1
-                if visited[r][c]:
-                    # marking only positive numbes
-                    continue
-                gettraverse(r, c, forest, visited)
+        queue = collections.deque([(sr, sc, 0)])
+        seen = {(sr, sc)}
+        while queue:
+            r, c, d = queue.popleft()
+            # if we find the target then we can return the distance that we took
+            # otherwise we know we did not see it and return -1
+            if r == tr and c == tc:
+                return d
+            # if we are in bounds and we have not seen this then we can add to seen and append
+            # and it exist and we can try and add to it seen or append it
+            for nr, nc in ((r-1, c), (r+1, c), (r, c-1), (r, c+1)):
+                if (0 <= nr < R and 0 <= nc < C and
+                        (nr, nc) not in seen and forest[nr][nc]):
+                    seen.add((nr, nc))
+                    queue.append((nr, nc, d+1))
+        return -1
 
 
 # @lc code=end
