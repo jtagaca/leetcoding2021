@@ -31,6 +31,12 @@ class Solution:
                     right -= 1
                 elif currentSum < 0:
                     left += 1
+
+                # this works because once we move to a next left index that is not
+                # equal to the prev we now know that
+                # the new combination of left current and right will be different and the
+                # if and else statement will do it's job on the top to move right and left
+                # in case our sum is more than 0 or less than zero
                 else:
                     oput.append([nums[currentnumber], nums[left], nums[right]])
                     left += 1

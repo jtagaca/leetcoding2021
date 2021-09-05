@@ -52,8 +52,15 @@ class Solution:
             # the target
             # but if we did not find the target and our que is 0 then we know that we did not find the target
             for nr, nc in ((r-1, c), (r+1, c), (r, c-1), (r, c+1)):
-                if (0 <= nr < R and 0 <= nc < C and
-                        (nr, nc) not in seen and forest[nr][nc]):
+
+                if (
+                    # as long as we are in the matrix even after checking the left and right then
+                    # we can check if this position is seen or not
+                    # then we check if this is 0 and if it is 0 then it is false
+                    0 <= nr < R and 0 <= nc < C and
+                    # what does the forest[nr, nc ] mean that as long as it is not a 0 then we
+                    # append it to seen
+                        (nr, nc) not in seen and forest[nr][nc] != 0):
                     seen.add((nr, nc))
                     queue.append((nr, nc, d+1))
         return -1
