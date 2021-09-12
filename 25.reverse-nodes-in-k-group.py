@@ -31,6 +31,7 @@ class Solution:
         #saves the address of 1?
         dummy.next=head
         groupPrev=dummy
+        # we change the head address?
         while True:
             kth=getKth(groupPrev,k)
             if kth is None:
@@ -48,9 +49,11 @@ class Solution:
             # we changed dummy here??
             # after the first iteration
             tmp=groupPrev.next
+            #address of dummy.next which has the address of head was updated on the first iteration
             groupPrev.next=kth
             groupPrev=tmp
-            
+            #how are we returning dummy.next here?
+            #isn't dummy.next ==head? and head is still pointing to original
         return dummy.next
             
             
