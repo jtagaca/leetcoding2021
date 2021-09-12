@@ -47,6 +47,7 @@ class Solution:
             copy.random=oldCopy[current.random]
             current=current.next
         # and this is why this works 
+        # returns the address of the new node
         return oldCopy[head]
 # @lc code=end
 
