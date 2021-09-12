@@ -27,8 +27,13 @@ class Solution:
             else:
                 letlog.append(log.split())
         # sorted using the first letter to the end letter
+        #sorting by word and if word is the same we sord by letter 
         letlog.sort(key=lambda x: x[0])
+        
         # sorted using the next letter until the end
+        # same thing but we sort here first since ↑ because we are 
+        # removing the need to presort if all of the letters are the same since the top sorted the 
+        # words alphabetically
         letlog.sort(key=lambda x: x[1:])
 
         for i in range(len(letlog)):
