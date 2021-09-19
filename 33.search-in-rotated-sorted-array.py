@@ -10,6 +10,8 @@ from typing import *
 #
 
 # @lc code=start
+# time will be O(logn) because we are having the array each time 
+# the space will be O(1) since we are not using extra memory 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         # min l # max r 
