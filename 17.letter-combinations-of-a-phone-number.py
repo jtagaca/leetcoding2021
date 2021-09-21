@@ -31,6 +31,8 @@ class Solution:
                 currentString.append(c)
                 # back track means you add then you remove after using it 
                 # we added and tested
+                # you use it and explore if it is viable 
+                # if ever it hits your base case then great if not then ok
                 backtrack(i+1, currentString)
                 # then we popped what we used or removed it 
                 currentString.pop()
