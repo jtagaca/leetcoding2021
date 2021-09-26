@@ -3,6 +3,11 @@ class Solution:
         word_idx = 0
         abbr_idx = 0
         count = 0
+        
+        #Time/Space Complexity
+        #Time: O(N), where N = len of abbreviation
+        #Space: O(1)
+        # we are dependent on abbreviation word  
         # we are using this for bounds we will always have 1 more iteration 
         while abbr_idx < len(abbr) and word_idx < len(word):
             # # checking if it's a digit as well as if it's a leading 0 
