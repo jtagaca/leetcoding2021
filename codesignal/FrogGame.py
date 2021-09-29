@@ -1,12 +1,12 @@
 
-#O(n!) time since we are vising each node at least once
+#O(2n) time since we are vising each node at least once
 #O(n) space complexity
 def isPossible(index, map, jump):
     
     if index >= len(map): return True
     elif map[index] == 1: return False
     #we are checking if our neighbor is possible to be considered
-    # 
+    # or check our check our jump
     return isPossible(index + 1, map, jump) or isPossible(index + jump + 1, map, jump)
 
 def isPossibleMain(map, jump):

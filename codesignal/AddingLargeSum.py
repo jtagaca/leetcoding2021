@@ -15,6 +15,7 @@ def addTwoHugeNumbers(a, b):
         # create a node not including carry
         node=ListNode(value%10000)
         carry=value//10000
+        # because we are repointing our node 
         node.next=result
         result=node
         
