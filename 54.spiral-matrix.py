@@ -46,7 +46,8 @@ class Solution:
             
             # this will not run since we are the same 1,1 for the range 
             for row in reversed(range(sr+1,er)):
-                # but for that edge case this will run since 
+                # but for th
+                # +152a0jt edge case this will run since 
                  # that is [[7][9][10]] if col 
                 if ec==sc:
                     break
