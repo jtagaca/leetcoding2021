@@ -15,6 +15,12 @@ class Node:
         self.next = next
 """
 
+
+# THis will run in O(n) in time  where n is the len of the given input 
+# O(1) for space 
+
+# this works because we are using the parent to attach together the children 
+# main logic is the prev and leftmost flag are the important key 
 class Solution:
     def connectingNodes(self, currentChild, prev, leftmostNode):
         if currentChild is None:
