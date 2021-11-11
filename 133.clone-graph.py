@@ -9,6 +9,12 @@ class Node:
 visited =set()
 
 
+# Time Complexity(DFS)
+
+#https://stackoverflow.com/questions/1286751/difference-between-vertices-and-edges-graphs-algorithm-and-ds
+
+# Since all the nodes and vertices are visited, the average time complexity for DFS on a graph is O(V + E), where V is the number of vertices and E is the number of edges. In case of DFS on a tree, the time complexity is O(V), where V is the number of nodes.
+
 #O(n+m) where n is the number of nodes and m is the number of edges 
 # O(n) where since we are storing at most n nodes in the hashmap 
 class Solution:
